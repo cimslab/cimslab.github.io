@@ -1,0 +1,129 @@
+<div class="desktop-navigation cdmica-navigation">
+
+    <div class="container">
+        <div class="pull-right {{currentPage}}">
+            <a class="about" ui-sref="aboutCdmica.aboutCdmica" ng-class="{'selected' : cdmicaSubPage == 'aboutCdmica'}">About</a>
+            <a class="details" ui-sref="cdmica.cdmica({detailsFilter: 'all'})" ng-class="{'selected' : cdmicaSubPage == 'details'}">Database</a>
+            <a class="sources" ui-sref="sources.sources({sourcesFilter: 'all'})" ng-class="{'selected' : cdmicaSubPage == 'sources'}">Sources</a>
+        </div>
+    </div>
+
+</div>
+
+<div class="container detail source">
+
+    <div class="col-xs-12 col-sm-4 detail-information">
+
+        <img style="background-color: #f8f8f8; margin-top: 68px;" height="900" class="img-responsive" ng-src="{{sources[sourceURL].coverPage.fields.file.url}}">
+
+    </div>
+
+    <div class="col-xs-12 col-sm-8 detail-content">
+
+        <h1 style="padding-top: 48px; margin-bottom: 24px;">{{sources[sourceURL].title}}</h1>
+
+        <p style="padding-bottom: 12px;">{{sources[sourceURL].description}}</p>
+
+        <div class="clearfix"></div>
+
+        <div>
+
+            <address ng-if="sources[sourceURL].date"  style="margin-right: 24px;">
+                <strong>Date</strong><br>
+                {{sources[sourceURL].date}}
+            </address>
+
+            <address ng-if="sources[sourceURL].category.length > 0"  style="margin-right: 24px;">
+                <strong>Category</strong><br>
+                <span ng-repeat="category in sources[sourceURL].category"><span ng-if="$index != 0">, </span>{{category}}</span>
+            </address>
+
+            <address ng-if="sources[sourceURL].publisher"  style="margin-right: 24px;">
+                <strong>Publisher</strong><br>
+                {{sources[sourceURL].publisher}}
+            </address>
+
+            <address ng-if="sources[sourceURL].author"  style="margin-right: 24px;">
+                <strong>Author</strong><br>
+                {{sources[sourceURL].author}}
+            </address>
+
+            <address ng-if="sources[sourceURL].location"  style="margin-right: 24px;">
+                <strong>Location</strong><br>
+                {{sources[sourceURL].location}}
+            </address>
+
+            <address ng-if="sources[sourceURL].material.length > 0"  style="margin-right: 24px;">
+                <strong>Material</strong><br>
+                <span ng-repeat="material in sources[sourceURL].material">
+                    <span ng-if="$index != 0">, </span>{{material}}
+                </span>
+            </address>
+
+            <address ng-if="sources[sourceURL].volumeAndEditionNotes"  style="margin-right: 24px;">
+                <strong>Volume and Edition Notes</strong><br>
+                {{sources[sourceURL].volumeAndEditionNotes}}
+            </address>
+
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div ng-if="sources[sourceURL].related.length > 0" class="related-source">
+
+            <h2>Related</h2>
+
+            <div ng-if="sources[sourceURL].related">
+
+                <table class="table" style="padding: 0;">
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="related in sources[sourceURL].related">
+                        <td scope="row">{{$index + 1}}. </td>
+                        <td style="padding-left: 6px !important;">
+                            <a target="_blank" ui-sref="sources.source({sourceId:related.sourceURL})"> {{related.title}}</a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div ng-if="sources[sourceURL].onlineLink" class="online-link">
+
+            <h2>Online Link</h2>
+
+            <a target="_blank" ng-href="{{sources[sourceURL].onlineLink}}">{{sources[sourceURL].onlineLink}}</a>
+
+        </div>
+
+        <div ng-if="sources[sourceURL].downloads.length > 0">
+
+            <h2>Downloads</h2>
+            <table class="table" style="padding: 0;">
+                <thead>
+
+                </thead>
+                <tbody>
+                <tr ng-repeat="download in sources[sourceURL].downloads">
+                    <td scope="row">{{$index + 1}}. </td>
+                    <td style="padding-left: 6px !important;">
+                        <a target="_blank" ng-href="{{download.url}}"> {{download.title}}</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+</div>
+
+

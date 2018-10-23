@@ -1,0 +1,47 @@
+
+<div class="container apply-page">
+
+
+    <div class="col-xs-12 col-sm-4 project-information">
+
+        <div ng-if="projects[projectURL].partners.length > 0">
+            <h3>Partners</h3>
+
+            <ul>
+                <li ng-repeat="partner in projects[projectURL].partners">{{partner}}</li>
+            </ul>
+        </div>
+
+
+        <div ng-if="apply.applicationForms.length > 0">
+            <h3>Application Forms</h3>
+
+            <ul>
+                <li ng-repeat="form in apply.applicationForms"><a target="_blank" ng-href="{{form.url}}">{{form.title}}</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-8 project-content">
+        <h2 class="project-title">{{apply.applyTitle}}</h2>
+        <p ng-bind-html="apply.applicationText | trust"></p>
+    </div>
+
+    <div class="col-xs-12 col-sm-3 col-sm-offset-4">
+        <h2 style="margin-bottom: 24px;"> Contact Information </h2>
+        <p> <strong> Phone: </strong>613.520.2600 x4000 <br />
+            <strong> Email: </strong> <a href="mailto:info@cims.carleton.ca">npnt.lc@cims.carleton.ca</a>
+        </p>
+    </div>
+
+    <div class="col-xs-12 col-sm-4 col-sm-offset-1">
+
+        <h2 style="margin-bottom: 24px;"> Location </h2>
+
+        <p> <strong> Address: </strong> Carleton Immersive Media Studio <br /> Carleton University <br />Visualization and Simulation Building, Fourth Floor<br />1125 Colonel By Drive <br /> Ottawa, ON K1S5B6</p>
+
+    </div>
+
+</div>
+
+

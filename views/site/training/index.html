@@ -1,0 +1,20 @@
+<div class="container projects">
+
+    <div class="col-xs-12">
+
+        <h1>Training Programs</h1>
+
+    </div>
+
+    <div class="project" ng-repeat="program in trainingPrograms">
+        <div class="clearfix partner-spacing" style="margin-bottom: 24px;" ng-if="$index % 3 == 0"></div>
+        <div class="col-xs-12 col-sm-4">
+            <img class="img-responsive" ng-src="{{program.trainingThumbnail}}">
+
+            <h4>{{program.programTitle}}</h4>
+
+            <a class="btn btn-default black" ui-sref="training.program({trainingId: program.trainingUrl})">View Training Program</a>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,50 @@
+<div class="container projects">
+
+    <div class="col-xs-12">
+
+        <h1 class="pull-left search">Blog</h1>
+
+        <div class="details search pull-right">
+            Search blog: <input type="text" ng-model="search">
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 blog-filters {{blogFilter}} ">
+
+        <div class="pull-left main-filters ">
+
+            <a ng-click="blogFilterType('All')">All</a>
+
+            <a ng-click="blogFilterType('Digitization')">Digitization</a>
+
+            <a ng-click="blogFilterType('BIM')">BIM</a>
+
+            <a ng-click="blogFilterType('Simulation')">Simulation</a>
+
+            <a ng-click="blogFilterType('Digitally Assisted Fabrication')">Digitally Assisted Fabrication</a>
+
+            <a ng-click="blogFilterType('Digitally Assisted Storytelling')">Digitally Assisted Storytelling</a>
+
+        </div>
+
+        <div class="clearfix"></div>
+
+    </div>
+
+
+
+
+    <div class="project blogs" ng-repeat="blog in blogs | blogsFilter:blogFilter | orderBy:'-blogEntryDate' | filter:search">
+
+        <div class="clearfix partner-spacing" style="margin-bottom: 24px;" ng-if="$index % 3 == 0"></div>
+        <div class="col-xs-12 col-sm-4">
+            <img class="img-responsive" ng-src="{{blog.mainBlogImage}}">
+
+            <h4>{{blog.blogPostName}}</h4>
+            <p>{{blog.author}} on {{blog.blogEntryDate}}</p>
+            <a class="btn btn-default black" ui-sref="blogs.blog({blogId: blog.blogPostUrl})">Read Blog</a>
+        </div>
+    </div>
+
+</div>

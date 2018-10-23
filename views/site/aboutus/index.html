@@ -1,0 +1,29 @@
+<header>
+
+    <div class="header-text">
+        <!--<h1 class="text-uppercase">{{projects['EastBlock'].projectName}}</h1>-->
+    </div>
+
+    <img class="img-responsive" ng-src="{{aboutUs.aboutUsImage}}" >
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+
+            <blockquote>
+                <q>{{aboutUs.aboutUsQuote}}</q>
+            </blockquote>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="col-sm-offset-1 col-sm-10">
+
+        <h2> {{aboutUs.aboutUsTitle}}</h2>
+
+        <p ng-bind-html="aboutUs.aboutUsText | trust"></p>
+
+    </div>
+</div>

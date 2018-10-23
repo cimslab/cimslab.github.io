@@ -1,0 +1,20 @@
+<div class="container projects">
+
+    <div class="col-xs-12">
+
+        <h1>Partners</h1>
+
+    </div>
+
+    <div class="project" ng-repeat="partner in partners">
+        <div class="clearfix partner-spacing" style="margin-bottom: 56px;" ng-if="$index % 4 == 0"></div>
+        <div class="col-xs-12 col-sm-3">
+            <img class="img-responsive" ng-src="{{partner.mainPartnerImage}}" style="padding-right: 32px">
+
+            <!--<h4>{{partner.partnerName}}</h4>-->
+
+            <a class="btn btn-default black" ui-sref="partners.partner({partnerId: partner.partnerUrl})">View Partner</a>
+        </div>
+    </div>
+
+</div>

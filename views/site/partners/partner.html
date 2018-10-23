@@ -1,0 +1,61 @@
+<header>
+    <div>
+        <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+            <div uib-slide ng-repeat="image in partners[partnerUrl].images track by $index" index="$index">
+                <div ng-if="image.contentType === 'image/jpeg' || image.contentType === 'image/png' || image.contentType === 'image/png'">
+                    <img style="background-color: #f8f8f8;" height="900" class="img-responsive" ng-src="{{image.url}}">
+                </div>
+
+
+
+                <div class="container">
+                    <div class="col-xs-12">
+                        <p>{{$index + 1}}/{{partners[partnerUrl].images.length}}.  {{image.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+
+    <div class="col-xs-12 col-sm-4 project-information">
+
+        <img class="img-responsive" style="padding: 20px" ng-src="{{partners[partnerUrl].partnerHomeLogo}}">
+
+        <div ng-if="partners[partnerUrl].category.length > 0">
+            <h3>Category</h3>
+
+            <ul>
+                <li ng-repeat="category in partners[partnerUrl].category">{{category}}</li>
+            </ul>
+        </div>
+
+        <div ng-if="partners[partnerUrl].partners.length > 0">
+            <h3>Partners</h3>
+
+            <ul>
+                <li ng-repeat="partner in partners[partnerUrl].partners">{{partner}}</li>
+            </ul>
+        </div>
+
+
+        <div ng-if="partners[partnerUrl].documents.length > 0">
+            <h3>Documents</h3>
+
+            <ul>
+                <li ng-repeat="document in partners[partnerUrl].documents"><a target="_blank" ng-href="{{document.url}}">{{document.title}}</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-8 project-content">
+        <h2>{{partners[partnerUrl].partnerName}}</h2>
+        <p ng-bind-html="partners[partnerUrl].partnerText | trust"></p>
+    </div>
+
+</div>
+
+

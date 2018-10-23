@@ -1,0 +1,77 @@
+<div class="desktop-navigation cdmica-navigation">
+
+    <div class="container">
+        <div class="pull-right {{currentPage}}">
+            <a class="about" ui-sref="aboutCdmica.aboutCdmica" ng-class="{'selected' : cdmicaSubPage == 'aboutCdmica'}">About</a>
+            <a class="details" ui-sref="cdmica.cdmica({detailsFilter: 'all'})" ng-class="{'selected' : cdmicaSubPage == 'details'}">Database</a>
+            <a class="sources" ui-sref="sources.sources({sourcesFilter: 'all'})" ng-class="{'selected' : cdmicaSubPage == 'sources'}">Sources</a>
+        </div>
+    </div>
+
+</div>
+
+<div class="container projects details sources">
+
+    <div class="col-xs-12">
+
+        <h1 class="pull-left search">Sources</h1>
+
+        <div class="details search pull-right">
+            Search sources: <input type="text" ng-model="search">
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 detail-filters {{sourceListFilter}} {{sourceSubFilterCategory}}">
+
+        <div class="pull-left main-filters">
+
+            <a ng-click="sourcesFilterType('all')">All</a>
+
+            <a ng-click="sourcesFilterType('category')">Category</a>
+
+            <a ng-click="sourcesFilterType('origin')">Origin</a>
+
+            <a ng-click="sourcesFilterType('material')">Material</a>
+
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="sub-filters">
+
+            <a ng-click="sourcesFilterType(subFilter)" ng-class="{'selected-sub-category' : subFilter == sourceSubFilterCategoryClass}" ng-repeat="subFilter in subFilters">{{subFilter}}</a>
+
+        </div>
+
+    </div>
+
+    <div class="details col-xs-12">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th ng-click="updateSourceOrder('title')">Title <i ng-style="{opacity : ((sourcesOrder == 'title' || sourcesOrder == '-title') && '1') || '0'}" ng-class="{'inverted': sourcesOrder == '-title'}" class="material-icons">arrow_drop_down</i></th>
+                    <th ng-click="updateSourceOrder('category')">Category <i ng-style="{opacity : ((sourcesOrder == 'category' || sourcesOrder == '-category') && '1') || '0'}" ng-class="{'inverted': sourcesOrder == '-category'}" class="material-icons">arrow_drop_down</i></th>
+                    <th ng-click="updateSourceOrder('date')">Date <i ng-style="{opacity : ((sourcesOrder == 'date' || sourcesOrder == '-date') && '1') || '0'}" ng-class="{'inverted': sourcesOrder == '-date'}" class="material-icons">arrow_drop_down</i></th>
+                    <th ng-click="updateSourceOrder('origin')">Origin <i ng-style="{opacity : ((sourcesOrder == 'origin' || sourcesOrder == '-origin') && '1') || '0'}" ng-class="{'inverted': sourcesOrder == '-origin'}" class="material-icons">arrow_drop_down</i></th>
+                    <!--<th ng-click="updateSourceOrder('material')">Material <i ng-style="{opacity : ((sourcesOrder == 'material' || sourcesOrder == '-material') && '1') || '0'}" ng-class="{'inverted': sourcesOrder == '-material'}" class="material-icons">arrow_drop_down</i></th>-->
+                </tr>
+                </thead>
+                <tbody>
+
+                    <tr ng-repeat="source in sources | sourceListFilter:sourceListFilter | orderBy:sourcesOrder | filter:search" ng-click="tableNavigate(source.url)"ui-sref="sources.source({sourceId: source.url})">
+
+                        {{source}}
+                        <td>{{source.title}}</td>
+                        <td><span ng-repeat="category in source.category"><span ng-if="$index != 0">, </span>{{category}}</span></td>
+                        <td>{{source.date}}</td>
+                        <td>{{source.origin}}</td>
+                        <!--<td><span ng-repeat="material in source.material"><span ng-if="$index != 0">, </span>{{material}}</span></td>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

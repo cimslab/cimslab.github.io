@@ -1,0 +1,48 @@
+<header>
+    <div>
+        <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+            <div uib-slide ng-repeat="image in trainingPrograms[trainingId].images track by $index" index="$index">
+                <img style="background-color: #f8f8f8;" height="900" class="img-responsive" ng-src="{{image.url}}">
+
+                <div class="container" ng-if="trainingPrograms[trainingId].images.length > 1">
+                    <div class="col-xs-12">
+                        <p>{{$index + 1}}/{{trainingPrograms[trainingId].images.length}}.  {{image.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+
+    <div class="col-xs-12 col-sm-4 project-information">
+
+        <div ng-if="trainingPrograms[trainingId].principalInvestigator.length > 0">
+            <h3>Principal Investigator</h3>
+
+            <ul>
+                <li> {{trainingPrograms[trainingId].principalInvestigator}} </li>
+            </ul>
+        </div>
+
+        <div ng-if="trainingPrograms[trainingId].date.length > 0">
+            <h3>Date</h3>
+
+            <ul>
+                <li> {{trainingPrograms[trainingId].date}} </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-8 project-content">
+        <h2>{{trainingPrograms[trainingId].programTitle}}</h2>
+        <p>{{trainingPrograms[trainingId].programDescription}}</p>
+
+    </div>
+
+</div>
+
+

@@ -1,0 +1,44 @@
+<!--<header class="home-page">-->
+
+    <!--<div class="header-text">-->
+        <!--&lt;!&ndash;<h1 class="text-uppercase">{{projects['EastBlock'].projectName}}</h1>&ndash;&gt;-->
+    <!--</div>-->
+
+    <!--<img class="img-responsive" ng-src="{{projects['DigitallyAssistedCarving'].images[1].url}}" height="600" style="height: 600px; width: 100%;">-->
+<!--</header>-->
+
+<div class="container projects our-team">
+    <div class="col-xs-12" >
+        <h1>Our Team</h1>
+    </div>
+
+    <div class="col-xs-12 team-filters {{personFilter}}">
+
+        <!--<a ng-click="personFilterType('All')">All</a>-->
+
+        <!--<a ng-click="personFilterType('Intern')">Interns</a>-->
+
+        <!--<a ng-click="personFilterType('Partner')">Partners</a>-->
+
+    </div>
+
+</div>
+
+
+<div class="container">
+
+    <div class="person" ng-repeat="person in people | personsFilter:personFilter | orderBy:'personName'">
+        <div class="clearfix partner-spacing hidden-sm hidden-md hidden-lg" ng-if="$index % 3 == 0"></div>
+        <div class="clearfix partner-spacing hidden-xs" ng-if="$index % 6 == 0"></div>
+        <div class="col-xs-4 col-sm-2 ourteam-container">
+
+            <img class="img-responsive" ng-src="{{person.personImage}}" height="400">
+            <div class="ourteam-content">
+                <h4>{{person.personName}}</h4>
+                <p class="person-title">{{person.personTitle}}</p>
+            </div>
+        </div>
+    </div>
+
+
+</div>

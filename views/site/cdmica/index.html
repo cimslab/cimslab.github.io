@@ -1,0 +1,79 @@
+<div class="desktop-navigation cdmica-navigation">
+
+    <div class="container">
+        <div class="pull-right {{currentPage}}">
+            <a class="about" ui-sref="aboutCdmica.aboutCdmica" ng-class="{'selected' : cdmicaSubPage == 'aboutCdmica'}">About</a>
+            <a class="details" ui-sref="cdmica.cdmica({detailsFilter: 'all'})" ng-class="{'selected' : cdmicaSubPage == 'details'}">Database</a>
+            <a class="sources" ui-sref="sources.sources({sourcesFilter: 'all'})" ng-class="{'selected' : cdmicaSubPage == 'sources'}">Sources</a>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="container projects details">
+
+    <div class="col-xs-12">
+
+        <h1 class="pull-left search">CDMICA</h1>
+
+        <div class="details search pull-right">
+            Search database: <input type="text" ng-model="search">
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 detail-filters {{detailListFilter}} {{subFilterCategory}}">
+
+        <div class="pull-left main-filters">
+
+            <a ng-click="detailsFilterType('all')">All</a>
+
+            <a ng-click="detailsFilterType('category')">Category</a>
+
+            <a ng-click="detailsFilterType('origin')">Origin</a>
+
+            <a ng-click="detailsFilterType('material')">Material</a>
+
+            <a ng-click="detailsFilterType('purpose')">Purpose</a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="pull-left sub-filters">
+
+            <a ng-click="detailsFilterType(subFilter)" ng-class="{'selected-sub-category' : subFilter == subFilterCategoryClass}" ng-repeat="subFilter in subFilters">{{subFilter}}</a>
+
+        </div>
+
+    </div>
+
+    <div class="details col-xs-12">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th ng-click="updateDetailOrder('detailName')">Title <i ng-style="{opacity : ((detailsOrder == 'detailName' || detailsOrder == '-detailName') && '1') || '0'}" ng-class="{'inverted': detailsOrder == '-detailName'}" class="material-icons">arrow_drop_down</i></th>
+                    <th ng-click="updateDetailOrder('category')">Category <i ng-style="{opacity : ((detailsOrder == 'category' || detailsOrder == '-category') && '1') || '0'}" ng-class="{'inverted': detailsOrder == '-category'}" class="material-icons">arrow_drop_down</i></th>
+                    <th ng-click="updateDetailOrder('date')">Date <i ng-style="{opacity : ((detailsOrder == 'date' || detailsOrder == '-date') && '1') || '0'}" ng-class="{'inverted': detailsOrder == '-date'}" class="material-icons">arrow_drop_down</i></th>
+                    <th ng-click="updateDetailOrder('origin')">Origin <i ng-style="{opacity : ((detailsOrder == 'origin' || detailsOrder == '-origin') && '1') || '0'}" ng-class="{'inverted': detailsOrder == '-origin'}" class="material-icons">arrow_drop_down</i></th>
+                    <th ng-click="updateDetailOrder('material')">Material <i ng-style="{opacity : ((detailsOrder == 'material' || detailsOrder == '-material') && '1') || '0'}" ng-class="{'inverted': detailsOrder == '-material'}" class="material-icons">arrow_drop_down</i></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                    <tr ng-repeat="detail in detailsArray | detailListFilter:detailListFilter | orderBy:detailsOrder | filter:search" ng-click="tableNavigate(detail.detailUrl)" ui-sref="cdmica.detail({detailId: detail.detailUrl})">
+
+                        {{detail}}
+                        <td>{{detail.detailName}}</td>
+                        <td>{{detail.category}}</td>
+                        <td>{{detail.date}}</td>
+                        <td>{{detail.origin}}</td>
+                        <td><span ng-repeat="material in detail.material"><span ng-if="$index != 0">, </span>{{material}}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

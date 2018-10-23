@@ -1,0 +1,80 @@
+
+<header class="home-page">
+    <div class="header-text">
+        <h1> <span style="font-weight: 500"> New Paradigm New Tools</span>
+            <br>
+            Training Program
+        </h1>
+
+
+        <a class="btn btn-default blue" href="#aboutus">About Us</a>
+    </div>
+
+    <img style="background-color: #f8f8f8;" height="900" class="img-responsive" src="http://images.ctfassets.net/lmtovp1vwscu/5gWGrnpY1Uuo8A4aOA20Y6/6e2a76c06a80fffa484da9cfbd2b1315/Quadriportico.jpg">
+</header>
+
+<div class="container">
+
+    <div class="row home-page-projects-block">
+
+        <div class="col-xs-12 col-sm-4">
+            <img class="img-responsive" ng-src="{{projects['VirtualHistoricCentre'].mainProjectImage}}">
+            <h3>{{projects['VirtualHistoricCentre'].projectName}}</h3>
+            <p>{{projects['VirtualHistoricCentre'].shortDescription}}</p>
+
+            <a class="btn btn-default black" ui-sref="projects.project({projectId: 'VirtualHistoricCentre'})">View Project </a>
+        </div>
+
+        <div class="col-xs-12 col-sm-4">
+            <img class="img-responsive" ng-src="{{projects['BIMforCulturalHeritage'].mainProjectImage}}">
+            <h3>{{projects['BIMforCulturalHeritage'].projectName}}</h3>
+            <p>{{projects['BIMforCulturalHeritage'].shortDescription}}</p>
+
+            <a class="btn btn-default black" ui-sref="projects.project({projectId: 'VirtualHistoricCentre'})">View Project </a>
+        </div>
+
+        <div class="col-xs-12 col-sm-4">
+            <img class="img-responsive" ng-src="{{projects['Digitally-AssistedStoneCarving'].mainProjectImage}}">
+            <h3>{{projects['Digitally-AssistedStoneCarving'].projectName}}</h3>
+            <p>{{projects['Digitally-AssistedStoneCarving'].shortDescription}}</p>
+
+            <a class="btn btn-default black"ui-sref="projects.project({projectId: 'Digitally-AssistedStoneCarving'})">View Project </a>
+        </div>
+
+    </div>
+
+    <hr>
+    <p class="text-center"><a class="btn btn-default blue view-all-projects" ui-sref="projects.projects({projectFilter: All})">View All Projects</a></p>
+    <hr>
+
+</div>
+
+<div class="container">
+
+    <div class="row home-page-more-block">
+
+        <div class="col-xs-12 col-sm-6 our-team">
+
+            <img class="img-responsive" src="../assets/homepage/HomePage-OurTeam.png">
+
+            <div class="content">
+
+                <a class="btn btn-default blue" href="#ourteam">Our Team</a>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 partner">
+
+            <img class="img-responsive" src="../assets/homepage/HomePage-OurPartners.png">
+
+            <div class="content">
+
+                <a class="btn btn-default blue" href="#partners">Our Partners</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

@@ -1,0 +1,47 @@
+<div class="container projects">
+
+    <div>
+
+        <h1>Projects <span class="pull-right list-map-toggle {{projectView}}">
+            <a ng-click="projectGridView()" class="list-toggle">  <i class="material-icons"> list </i> List  </a>
+            <a ng-click="projectMapView()" class="map-toggle">  <i class="material-icons"> public </i>  Map  </a></span>
+        </h1>
+
+    </div>
+
+    <div class="project-grid-view" ng-hide="projectView =='map'">
+
+        <div class="col-xs-12 project-filters {{projectFilter}}">
+
+            <a ng-click="projectFilterType('All')">All</a>
+
+            <a ng-click="projectFilterType('Digitization')">Digitization</a>
+
+            <a ng-click="projectFilterType('Building Information Modelling')">BIM</a>
+
+            <a ng-click="projectFilterType('Simulation')">Simulation</a>
+
+            <a ng-click="projectFilterType('Digitally Assisted Fabrication')">Digitally Assisted Fabrication</a>
+
+            <a ng-click="projectFilterType('Digitally Assisted Storytelling')">Digitally Assisted Storytelling</a>
+
+        </div>
+
+        <div class="project" ng-repeat="project in projects | projectsFilter:projectFilter | orderBy:'-projectDate'">
+            <div class="clearfix partner-spacing" style="margin-bottom: 24px;" ng-if="$index % 3 == 0"></div>
+            <div class="col-xs-12 col-sm-4">
+                <img class="img-responsive" ng-src="{{project.mainProjectImage}}">
+
+                <h4>{{project.projectName}}</h4>
+                <p>{{project.shortDescription}}</p>
+                <a class="btn btn-default black" ui-sref="projects.project({projectId: project.projectUrl})">View Project</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="project-map-view" ng-hide="projectView =='grid'">
+        <div id='map'></div>
+    </div>
+
+</div>

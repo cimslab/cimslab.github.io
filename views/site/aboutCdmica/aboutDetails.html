@@ -1,0 +1,48 @@
+<div class="desktop-navigation cdmica-navigation">
+
+    <div class="container">
+        <div class="pull-right {{currentPage}}">
+            <a class="about" ui-sref="aboutCdmica.aboutCdmica" ng-class="{'selected' : cdmicaSubPage == 'aboutCdmica'}">About</a>
+            <a class="details" ui-sref="cdmica.cdmica({detailsFilter: 'all'})" ng-class="{'selected' : cdmicaSubPage == 'details'}">Database</a>
+            <a class="sources" ui-sref="sources.sources({sourcesFilter: 'all'})" ng-class="{'selected' : cdmicaSubPage == 'sources'}">Sources</a>
+        </div>
+    </div>
+
+</div>
+
+<header>
+        <img style="background-color: #f8f8f8;" height="900" class="img-responsive" ng-src="{{CDMICAHomePage.headerImage}}">
+</header>
+
+<div class="container">
+
+
+    <div class="col-xs-12 col-sm-4 project-information">
+
+        <div ng-if="CDMICAHomePage.partners.length > 0">
+            <h3>Partners</h3>
+
+            <ul>
+                <li ng-repeat="partner in CDMICAHomePage.partners">{{partner}}</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-8 project-content">
+        <h2>{{CDMICAHomePage.title}}</h2>
+        <p>{{CDMICAHomePage.description}}</p>
+
+
+        <hr>
+
+        <h2>{{CDMICAHomePage.instructionTextHeader}}</h2>
+        <p>{{CDMICAHomePage.instructionText}}</p>
+
+        <a class="btn btn-default blue" ui-sref="cdmica.cdmica({detailsFilter: 'all'})">Browse Database</a>
+
+    </div>
+
+</div>
+
+

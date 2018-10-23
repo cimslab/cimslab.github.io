@@ -1,0 +1,64 @@
+<header>
+    <div>
+        <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+            <div uib-slide ng-repeat="image in blogs[blogPostUrl].images track by $index" index="$index">
+
+                <div ng-if="image.contentType === 'image/jpeg' || image.contentType === 'image/png' || image.contentType === 'image/png'">
+                    <img style="background-color: #f8f8f8;" height="900" class="img-responsive" ng-src="{{image.url}}">
+                </div>
+
+
+
+                <div class="container">
+                    <div class="col-xs-12">
+                        <p>{{$index + 1}}/{{blogs[blogPostUrl].images.length}}.  {{image.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="col-xs-12 col-sm-4 project-information">
+
+        <div ng-if="blogs[blogPostUrl].category.length > 0">
+            <h3>Category</h3>
+
+            <ul>
+                <li ng-repeat="category in blogs[blogPostUrl].category">{{category}}</li>
+            </ul>
+        </div>
+
+        <div ng-if="blogs[blogPostUrl].partners.length > 0">
+            <h3>Partners</h3>
+
+            <ul>
+                <li ng-repeat="partner in blogs[blogPostUrl].partners">{{partner}}</li>
+            </ul>
+        </div>
+
+
+        <div ng-if="blogs[blogPostUrl].documents.length > 0">
+            <h3>Documents</h3>
+
+            <ul>
+                <li ng-repeat="document in blogs[blogPostUrl].documents"><a target="_blank" ng-href="{{document.url}}">{{document.title}}</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-8 project-content blog-content">
+        <h2 class="blog-title">
+            {{blogs[blogPostUrl].blogPostName}}
+            <br>
+            <span>{{blogs[blogPostUrl].author}} on {{blogs[blogPostUrl].blogEntryDate}}</span>
+        </h2>
+        <p ng-bind-html="blogs[blogPostUrl].blogContent | trust"></p>
+
+    </div>
+
+</div>
+
+

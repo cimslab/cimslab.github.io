@@ -1,0 +1,242 @@
+<div class="desktop-navigation cdmica-navigation">
+
+    <div class="container">
+        <div class="pull-right {{currentPage}}">
+            <a class="about" ui-sref="aboutCdmica.aboutCdmica" ng-class="{'selected' : cdmicaSubPage == 'aboutCdmica'}">About</a>
+            <a class="details" ui-sref="cdmica.cdmica({detailsFilter: 'all'})" ng-class="{'selected' : cdmicaSubPage == 'details'}">Database</a>
+            <a class="sources" ui-sref="sources.sources({sourcesFilter: 'all'})" ng-class="{'selected' : cdmicaSubPage == 'sources'}">Sources</a>
+        </div>
+    </div>
+
+</div>
+
+<div class="container detail">
+
+    <div class="col-xs-12 col-sm-4 detail-information">
+
+        <div uib-carousel active="active" style="margin-top: 68px;" interval="myInterval" no-wrap="noWrapSlides">
+            <div uib-slide ng-repeat="photo in details[detailURL].photos track by $index" index="$index">
+                <div ng-if="photo.contentType === 'image/jpeg' || photo.contentType === 'image/png' || photo.contentType === 'image/png'">
+                    <img style="background-color: #f8f8f8;" height="900" class="img-responsive" ng-src="{{photo.url}}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-8 detail-content">
+
+        <h1 style="padding-top: 48px; margin-bottom: 24px;">{{details[detailURL].detailName}}</h1>
+
+        <p style="padding-bottom: 12px;">{{details[detailURL].background}}</p>
+
+        <div class="clearfix"></div>
+
+        <div>
+
+            <address ng-if="details[detailURL].dateRange" class="pull-left" style="margin-right: 24px;">
+                <strong>Date</strong><br>
+                {{details[detailURL].dateRange}}
+            </address>
+
+            <address ng-if="details[detailURL].category" class="pull-left" style="margin-right: 24px;">
+                <strong>Category</strong><br>
+                {{details[detailURL].category}}
+            </address>
+
+            <address ng-if="details[detailURL].location" class="pull-left" style="margin-right: 24px;">
+                <strong>Location</strong><br>
+                {{details[detailURL].location}}
+            </address>
+
+            <address ng-if="details[detailURL].materialSubcategory.length > 0" class="pull-left" style="margin-right: 24px;">
+                <strong>Material</strong><br>
+                <span ng-repeat="material in details[detailURL].materialSubcategory">
+                    <span ng-if="$index != 0">, </span>{{material}}
+                </span>
+            </address>
+
+            <address ng-if="details[detailURL].purpose" class="pull-left" style="margin-right: 24px;">
+                <strong>Purpose</strong><br>
+                {{details[detailURL].purpose}}
+            </address>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div ng-if="details[detailURL].parentAssembly.length > 0">
+
+
+            <h2>Parent Assembly</h2>
+            <table class="table" style="padding: 0;">
+                <thead>
+
+                </thead>
+                <tbody>
+                <tr ng-repeat="assembly in details[detailURL].parentAssembly">
+                    <td scope="row">{{$index + 1}}. </td>
+                    <td style="padding-left: 6px !important;">
+                        <a ui-sref="cdmica.detail({detailId: assembly.detailUrl})"> {{assembly.detailName}}</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <div ng-if="details[detailURL].drawings.length > 0">
+
+            <h2>Drawings</h2>
+            <table class="table" style="padding: 0;">
+                <thead>
+
+                </thead>
+                <tbody>
+                <tr ng-repeat="drawing in details[detailURL].drawings">
+                    <td scope="row">{{$index + 1}}. </td>
+                    <td style="padding-left: 6px !important;">
+                        <a target="_blank" ng-href="{{drawing.url}}"> {{drawing.description}}</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <div ng-if="details[detailURL].modelFiles.length > 0">
+            <h2>Model Files</h2>
+            <table class="table">
+                <thead>
+
+                </thead>
+                <tbody>
+                <tr ng-repeat="modelFile in details[detailURL].modelFiles">
+                    <td scope="row">{{$index + 1}}. </td>
+                    <td style="padding-left: 6px !important;">
+                        <a target="_blank" ng-href="{{modelFile.url}}"> {{modelFile.description}}</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <div ng-if="details[detailURL].relatedSpecificAssemblies.length > 0 || details[detailURL].relatedSpecificDetails.length > 0 || details[detailURL].relatedTypicalAssemblies.length > 0 || details[detailURL].relatedTypicalDetails.length > 0">
+
+            <h2>Related</h2>
+
+            <div ng-if="details[detailURL].relatedSpecificAssemblies.length > 0">
+                <address>
+                    <strong>Specific Assemblies</strong><br>
+                </address>
+
+                <table class="table" style="padding: 0;">
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="specificAssembly in details[detailURL].relatedSpecificAssemblies">
+                        <td scope="row">{{$index + 1}}. </td>
+                        <td style="padding-left: 6px !important;">
+                            <a target="_blank" ui-href="cdmica.detail({detailId: specificAssembly.detailUrl})"> {{specificAssembly.detailName}}</a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div ng-if="details[detailURL].relatedSpecificDetails.length > 0">
+                <address>
+                    <strong>Specific Details</strong><br>
+                </address>
+
+                <table class="table" style="padding: 0;">
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="specificDetail in details[detailURL].relatedSpecificDetails">
+                        <td scope="row">{{$index + 1}}. </td>
+                        <td style="padding-left: 6px !important;">
+                            <a target="_blank" ui-sref="cdmica.detail({detailId: specificDetail.detailUrl})"> {{specificDetail.detailName}}</a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div ng-if="details[detailURL].relatedTypicalAssemblies.length > 0">
+                <address>
+                    <strong>Typical Assemblies</strong><br>
+                </address>
+
+                <table class="table" style="padding: 0;">
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="typicalAssembly in details[detailURL].relatedTypicalAssemblies">
+                        <td scope="row">{{$index + 1}}. </td>
+                        <td style="padding-left: 6px !important;">
+                            <a target="_blank" ui-sref="cdmica.detail({detailId: typicalAssembly.detailUrl})"> {{typicalAssembly.detailName}}</a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div ng-if="details[detailURL].relatedTypicalDetails.length > 0">
+                <address>
+                    <strong>Typical Details</strong><br>
+                </address>
+
+                <table class="table" style="padding: 0;">
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="typicalDetail in details[detailURL].relatedTypicalDetails">
+                        <td scope="row">{{$index + 1}}. </td>
+                        <td style="padding-left: 6px !important;">
+                            <a target="_blank" ui-sref="cdmica.detail({detailId: typicalDetail.detailUrl})"> {{typicalDetail.detailName}}</a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div ng-if="details[detailURL].relatedSources.length > 0">
+
+            <h2>Sources</h2>
+            <table class="table" style="padding: 0;">
+                <thead>
+
+                </thead>
+                <tbody>
+                <tr ng-repeat="relatedSource in details[detailURL].relatedSources">
+                    <td scope="row">{{$index + 1}}. </td>
+                    <td style="padding-left: 6px !important;">
+                        <a target="_blank" ui-sref="sources.source({sourceId: relatedSource.url})"> {{relatedSource.title}}</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+</div>
+
+
